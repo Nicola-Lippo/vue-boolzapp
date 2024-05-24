@@ -11,7 +11,12 @@
       href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
     />
     <link rel="stylesheet" href="style.css" />
-    <title>Boolzapp</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+      integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+      crossorigin="anonymous"
+    ></script>
+    <title>V-Boolzapp</title>
   </head>
   <body>
     <div id="app" class="container">
@@ -48,14 +53,16 @@
             name="search"
           />
         </div>
+        <!-- LISTA CONTATTI -->
         <div class="contacts">
-          <div class="contact">
+          <div class="contact" v-for="(contacts, index) in contacts" :key="`contacts-${index}`">
             <div class="contact-logo">
-              <img src="img/avatar_1.jpg" alt="Utente" />
+              <!-- NB : = v-bind -->
+              <img :src="contacts.avatar" alt="contacts.avatar" />
             </div>
             <div class="contact-info">
               <h3>
-                <span class="contact-name">Nome contatto</span>
+                <span class="contact-name">{{ contacts.name }}</span>
                 <span class="time f-right"></span>
               </h3>
               <small></small>
