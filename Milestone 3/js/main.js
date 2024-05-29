@@ -179,6 +179,12 @@ createApp ({
             this.activeContacts = index;
             
         },
+        //RISOLUZIONE ERRORE :richiamavo 2 volte la funzione + riga 202 
+        gestioneInvio () {
+            //svuoto il camput di imput dopo l'invio
+            this.messaggioInviato = null;
+            setTimeout(this.riceviMessaggio, 1000);
+        },
         inviaMessaggio() {
             //il v-model ha modificato le proprietà
             console.log('ho premuto invio');
@@ -190,8 +196,23 @@ createApp ({
                 //NB.gli elementi di un array devono essere coerenti
                 date: '11/02/24',
                 message: this.messaggioInviato,
-                status: 'sent'    
-            }]
+                status: 'sent'},
+            ];
+
+            this.gestioneInvio();
+        },
+        riceviMessaggio() {
+            //come commento precedente 
+            const risposta = this.contacts[this.activeContacts].messages
+            
+            this.contacts[this.activeContacts].messages = [...risposta, {
+                date: '11/02/24',
+                message: 'ok',
+                status: 'received'},
+        ];
         },
     },
 }).mount('#app');
+
+
+
